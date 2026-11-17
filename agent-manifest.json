@@ -1,0 +1,83 @@
+{
+    "actions": {
+        "agentTools": [
+            "get_contract_state",
+            "fetch_source_facts",
+            "fetch_ownership_facts",
+            "fetch_tokenomics_facts",
+            "fetch_liquidity_facts"
+        ],
+        "bridge": "./bridge/action-bridge.html",
+        "module": "./site-actions.js",
+        "version": 1
+    },
+    "agent_mcp": {
+        "available": false,
+        "front_man": "contract_safety_coordinator",
+        "network": "contractscope",
+        "protocol": "nsdeploy-agent-mcp/v1",
+        "reason": "This is a static bundle; a public MCP facade requires an application host."
+    },
+    "allowed_peers": [],
+    "brand": "ContractScope",
+    "deployment": {
+        "browser_mock": false,
+        "direct_byok": true,
+        "direct_mcp_requires_cors": true,
+        "mode": "static",
+        "public_mcp_facade": false,
+        "self_contained_runtime": true
+    },
+    "linking": {
+        "exports": [
+            {
+                "aliases": [
+                    "contractscope",
+                    "contract_safety_coordinator"
+                ],
+                "front_man": "contract_safety_coordinator",
+                "network": "contractscope",
+                "url": "contractscope"
+            }
+        ],
+        "imports": [],
+        "link_updates": {
+            "mode": "browser-local"
+        },
+        "protocol": "nsdeploy-link/v1"
+    },
+    "llm_router": {
+        "base_url": "https://api.otari.ai/api/v1",
+        "byok_router": "https://api.otari.ai/api/v1",
+        "mock": false
+    },
+    "networks": [
+        {
+            "description": "Ask whether a contract is safe to mint, who owns it, and where its liquidity is locked \u2014 in plain language.",
+            "front_man": "contract_safety_coordinator",
+            "hocon": "./contractscope.network.json",
+            "name": "contractscope",
+            "sample_queries": [
+                "Is 0x7AB8d02CBb51Ff7223fDe700eAaa2a91Bf750314 on BNB Smart Chain safe to mint?",
+                "Has the owner of 0x7AB8d02CBb51Ff7223fDe700eAaa2a91Bf750314 on BNB Smart Chain renounced ownership?",
+                "Does 0xBF01c3eF1Bc368288067d4AC49bA9b147DE3a461 on Ethereum have a buy or sell tax?",
+                "Where is the liquidity locked for 0x7AB8d02CBb51Ff7223fDe700eAaa2a91Bf750314 on BNB Smart Chain?",
+                "Buy 0.01 BNB of 0x7AB8d02CBb51Ff7223fDe700eAaa2a91Bf750314 for me."
+            ],
+            "tags": [
+                "agentified-website",
+                "contract-safety",
+                "bsc",
+                "ethereum"
+            ]
+        }
+    ],
+    "peer_policy": {
+        "deny_origins": [],
+        "mode": "closed",
+        "note": "Local agents and page-local actions only."
+    },
+    "theme": {
+        "primary": "#0f2a43"
+    }
+}

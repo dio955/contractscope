@@ -1,0 +1,18 @@
+{
+  "exports": [
+    {
+      "aliases": [
+        "contractscope",
+        "contract_safety_coordinator"
+      ],
+      "front_man": "contract_safety_coordinator",
+      "network": "contractscope",
+      "url": "contractscope"
+    }
+  ],
+  "imports": [],
+  "link_updates": {
+    "mode": "browser-local"
+  },
+  "protocol": "nsdeploy-link/v1"
+}

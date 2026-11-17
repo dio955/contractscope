@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="ContractScope — paste a contract address, check its public on-chain facts in plain language before you mint or buy.">
+    <title>ContractScope — Is this contract safe to mint?</title>
+    <link rel="stylesheet" href="styles.css">
+    <script type="module" src="script.js"></script>
+    <script type="module" src="site.js"></script>
+  </head>
+  <body>
+    <header>
+      <a class="brand" href="#">Contract<span>Scope</span></a>
+      <nav aria-label="Main navigation"><a href="#checker">Checker</a><a href="#contract-card">Contract card</a><a href="#assistant">Assistant</a></nav>
+    </header>
+    <main>
+      <section class="intro" aria-labelledby="welcome">
+        <p class="eyebrow">Read-only contract check · No wallet needed · No transaction sent</p>
+        <h1 id="welcome">Is this contract safe to mint?</h1>
+        <p>Paste a contract address and pick a chain. ContractScope reads the public facts — verified source, owner, mint and pause functions, taxes, liquidity — and explains them in plain language.</p>
+        <p class="disclaimer"><strong>This is not a guarantee of safety — always do your own research.</strong> A clean-looking check never means a contract is 100% safe.</p>
+      </section>
+
+      <section id="checker" aria-labelledby="checker-heading">
+        <h2 id="checker-heading">Check a contract</h2>
+        <form id="check-form">
+          <label for="contract-address">Contract address</label>
+          <input id="contract-address" name="contractAddress" type="text" autocomplete="off" spellcheck="false"
+                 placeholder="0x…" required maxlength="42">
+          <label for="contract-chain">Chain</label>
+          <select id="contract-chain" name="contractChain">
+            <option value="56">BNB Smart Chain (56)</option>
+            <option value="1">Ethereum (1)</option>
+          </select>
+          <button id="check-button" type="submit">Check contract</button>
+          <p id="check-status" role="status"></p>
+        </form>
+        <p>Try a known contract:
+          <button type="button" data-sample="0x7AB8d02CBb51Ff7223fDe700eAaa2a91Bf750314" data-chain="56">TART (BSC)</button>
+          <button type="button" data-sample="0xa1bee8360d5ab0758c7de535025cf9faac43bbb3" data-chain="56">AGIO mint (BSC)</button>
+          <button type="button" data-sample="0xBF01c3eF1Bc368288067d4AC49bA9b147DE3a461" data-chain="1">$AGI token (Ethereum)</button>
+        </p>
+        <p class="demo-note">Checks use only public, keyless APIs (Sourcify, DexScreener, public RPC endpoints). No wallet connection, no signature, no transaction — ever. Holder counts are not available from any keyless API, so this page says so instead of inventing them.</p>
+      </section>
+
+      <section id="contract-card" class="card" aria-labelledby="card-heading" hidden>
+        <h2 id="card-heading">Contract card</h2>
+        <dl>
+          <dt>Address</dt><dd id="card-address">—</dd>
+          <dt>Chain</dt><dd id="card-chain">—</dd>
+          <dt>Last checked</dt><dd id="card-checked">Not checked yet</dd>
+          <dt>Source verified?</dt><dd id="fact-source">—</dd>
+          <dt>Owner</dt><dd id="fact-owner">—</dd>
+          <dt>Proxy?</dt><dd id="fact-proxy">—</dd>
+          <dt>Token</dt><dd id="fact-token">—</dd>
+          <dt>Mintable? Pausable? MaxTx?</dt><dd id="fact-mint-pause">—</dd>
+          <dt>Buy / sell tax signals</dt><dd id="fact-tax">—</dd>
+          <dt>Holders</dt><dd id="fact-holders">—</dd>
+          <dt>Liquidity</dt><dd id="fact-liquidity">—</dd>
+          <dt>LP lock / burn</dt><dd id="fact-lplock">—</dd>
+        </dl>
+        <p id="card-errors" role="alert"></p>
+        <p class="disclaimer"><strong>This is not a guarantee of safety — always do your own research.</strong></p>
+      </section>
+
+      <section id="assistant" class="assistant" aria-labelledby="assistant-heading">
+        <h2 id="assistant-heading">Ask ContractScope</h2>
+        <p>Ask the assistant about the contract on this page — for example, whether the owner has renounced, whether there is a hidden tax, or where the liquidity is locked. It reads the same public facts as the card above.</p>
+        <p class="assistant-note">Your messages and this page's data go to the LLM provider you choose in the settings below. This site never buys, sells, mints, or signs anything for you.</p>
+        <p id="assistant-status" role="status">Connecting the assistant… If this message stays, the assistant could not load. You can still use the page directly.</p>
+        <div id="agent-app">
+          <div data-ns-slot="header"></div>
+          <div class="assistant-panels">
+            <div data-ns-slot="chat"></div>
+            <div data-ns-slot="agents"></div>
+          </div>
+          <div data-ns-slot="settings"></div>
+        </div>
+      </section>
+    </main>
+    <footer>ContractScope · A demo for the Open Agentic Web Challenge · Read-only checks only — this is not a guarantee of safety, always do your own research.</footer>
+  </body>
+</html>

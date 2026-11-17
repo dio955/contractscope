@@ -1,0 +1,10 @@
+{
+  "networks": [
+    {
+      "name": "contractscope"
+    }
+  ],
+  "actions": {
+    "version": 1
+  }
+}
